@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'patch_finder'
-  spec.version       = '1.0.0'
+  spec.version       = '1.0.1'
   spec.authors       = ['wchen-r7']
   spec.email         = ['wei_chen@rapid7.com']
   spec.summary       = 'Patch Finder'
