@@ -17,7 +17,8 @@ To install PatchFinder:
 
 ## Usage
 
-To learn how to use a download client, please refer to its ```-h``` option.
+Each patch finding client can be found in the bin directory. To learn how to use one, please refer
+to its ```-h``` option, or the [wiki page](https://github.com/wchen-r7/Patch-Finder/wiki).
 
 ## License
 
