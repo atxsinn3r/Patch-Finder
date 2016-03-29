@@ -122,7 +122,5 @@ class PatchFinderBin
   end
 end
 
-if __FILE__ == $PROGRAM_NAME
-  bin = PatchFinderBin.new
-  bin.main
-end
+bin = PatchFinderBin.new
+bin.main
