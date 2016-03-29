@@ -2,19 +2,12 @@ require 'core/thread_pool'
 
 RSpec.describe PatchFinder::ThreadPool do
 
-  subject do
-    PatchFinder::ThreadPool.new(max_size)
-  end
-
   let(:max_size) do
     2
   end
 
-  describe '#schedule' do
-    it 'adds one thread to queue' do
-      subject.schedule { } # no code needed
-      expect(subject.instance_variable_get(:@jobs).length).to eq(1)
-    end
+  subject do
+    PatchFinder::ThreadPool.new(max_size)
   end
 
   describe '#eop?' do
