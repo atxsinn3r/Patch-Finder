@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['wei_chen@rapid7.com']
   spec.summary       = 'Patch Finder'
   spec.description   = 'Generic Patch Finder'
-  spec.homepage      = 'http://github.com/wchen-r7/patch_finder'
+  spec.homepage      = 'http://github.com/wchen-r7/patch-finder'
   spec.license       = 'BSD-3-clause'
 
 
