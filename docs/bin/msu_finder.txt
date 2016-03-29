@@ -1,7 +1,7 @@
-Usage: msu_finder.rb [options]
+Usage: msu_finder [options]
 
 The following example will download all IE updates to directory /tmp:
-msu_finder.rb -q "Internet Explorer" -d /tmp/
+msu_finder -q "Internet Explorer" -d /tmp/
 
 Searching advisories via Technet:
 
