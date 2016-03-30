@@ -1,5 +1,5 @@
-require 'core/helper'
-require 'engine/msu/technet'
+require 'patch_finder/core/helper'
+require 'patch_finder/engine/msu/technet'
 
 RSpec.describe PatchFinder::Engine::MSU::Technet do
 

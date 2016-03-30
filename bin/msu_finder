@@ -11,10 +11,10 @@
 lib = File.expand_path('../../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'core/helper'
-require 'core/config'
+require 'patch_finder/core/helper'
+require 'patch_finder/core/config'
+require 'patch_finder/msu'
 require 'optparse'
-require 'msu'
 
 class PatchFinderBin
 

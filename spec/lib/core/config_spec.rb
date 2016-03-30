@@ -1,4 +1,4 @@
-require 'core/config'
+require 'patch_finder/core/config'
 
 RSpec.describe PatchFinder::Config do
 

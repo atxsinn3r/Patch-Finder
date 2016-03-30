@@ -1,8 +1,8 @@
 require 'nokogiri'
-require 'core/thread_pool'
-require 'engine/msu/google'
-require 'engine/msu/technet'
-require 'engine/msu/constants'
+require 'patch_finder/core/thread_pool'
+require 'patch_finder/engine/msu/google'
+require 'patch_finder/engine/msu/technet'
+require 'patch_finder/engine/msu/constants'
 
 module PatchFinder
   class MSU

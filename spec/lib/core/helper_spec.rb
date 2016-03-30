@@ -1,4 +1,4 @@
-require 'core/helper'
+require 'patch_finder/core/helper'
 
 RSpec.describe PatchFinder::Helper do
 

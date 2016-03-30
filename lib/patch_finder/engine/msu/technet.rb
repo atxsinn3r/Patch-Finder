@@ -1,6 +1,6 @@
 require 'json'
 require 'nokogiri'
-require 'core/helper'
+require 'patch_finder/core/helper'
 require_relative 'constants'
 
 module PatchFinder

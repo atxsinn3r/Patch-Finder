@@ -1,5 +1,5 @@
-require 'core/helper'
-require 'msu'
+require 'patch_finder/core/helper'
+require 'patch_finder/msu'
 
 RSpec.describe PatchFinder::MSU do
 

@@ -1,4 +1,4 @@
-require 'core/thread_pool'
+require 'patch_finder/core/thread_pool'
 
 RSpec.describe PatchFinder::ThreadPool do
 

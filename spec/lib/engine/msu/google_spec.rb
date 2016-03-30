@@ -1,5 +1,5 @@
-require 'core/helper'
-require 'engine/msu/google'
+require 'patch_finder/core/helper'
+require 'patch_finder/engine/msu/google'
 
 RSpec.describe PatchFinder::Engine::MSU::Google do
   let(:json_data) do

@@ -1,5 +1,5 @@
 require 'json'
-require 'core/helper'
+require 'patch_finder/core/helper'
 require_relative 'constants'
 
 module PatchFinder
