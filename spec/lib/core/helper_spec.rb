@@ -29,10 +29,11 @@ RSpec.describe PatchFinder::Helper do
     fake.string
   end
 
-  describe '#print_debug' do
-    it 'prints a message with prefix [DEBUG]' do
-      output = get_stderr { subject.print_debug('message') }
-      expect(output).to include('[DEBUG]')
+  describe '#print_verbose' do
+    it 'prints a message with prefix [*]' do
+      subject.verbose = true
+      output = get_stderr { subject.print_verbose('message') }
+      expect(output).to include('[*]')
     end
   end
 

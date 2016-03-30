@@ -50,6 +50,14 @@ module PatchFinder
       @jobs.empty?
     end
 
+    # Terminates all threads
+    #
+    # @return [void]
+    def cleanup
+      @jobs.clear
+      @pool.map(&:kill)
+    end
+
   end
 end
 

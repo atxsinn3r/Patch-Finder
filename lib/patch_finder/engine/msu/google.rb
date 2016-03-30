@@ -64,7 +64,7 @@ module PatchFinder
               break if next_page.nil? || next_starting_index > 100
             end
           rescue GoogleClientException => e
-            print_error(e.message)
+            print_verbose_error(e.message)
             return msb_numbers.uniq
           end
 
@@ -97,7 +97,7 @@ module PatchFinder
           res = send_http_get_request(req_str)
           results = parse_results(res)
           if starting_index == 1
-            print_status("Number of search results: #{get_total_results(results)}")
+            print_verbose("Number of search results: #{get_total_results(results)}")
           end
 
           results

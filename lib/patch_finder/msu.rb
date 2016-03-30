@@ -11,6 +11,10 @@ module PatchFinder
 
     MAX_THREADS = 10
 
+    def initialize(opts={})
+      self.verbose = opts[:verbose] || false
+    end
+
     # Returns the download links.
     #
     # @param args [Hash] Arguments created by the user.
@@ -19,27 +23,31 @@ module PatchFinder
       msb_numbers = collect_msbs(args)
 
       unless msb_numbers.empty?
-        print_status("Advisories found (#{msb_numbers.length}): #{msb_numbers * ', '}")
-        print_status('Please wait while the download links are being collected...')
+        print_verbose("Advisories found (#{msb_numbers.length}): #{msb_numbers * ', '}")
+        print_verbose('Please wait while the download links are being collected...')
       end
 
       download_links = []
 
-      print_status("Max number of active collecting clients: #{MAX_THREADS}")
+      print_verbose("Max number of active collecting clients: #{MAX_THREADS}")
       pool = PatchFinder::ThreadPool.new(MAX_THREADS)
 
-      msb_numbers.each do |msb|
-        pool.schedule do
-          links = collect_links_from_msb(msb, args[:regex])
-          pool.mutex.synchronize do
-            download_links.concat(links)
+      begin
+        msb_numbers.each do |msb|
+          pool.schedule do
+            links = collect_links_from_msb(msb, args[:regex])
+            pool.mutex.synchronize do
+              download_links.concat(links)
+            end
           end
         end
+
+        pool.shutdown
+
+        sleep(0.5) until pool.eop?
+      ensure
+        pool.cleanup
       end
-
-      pool.shutdown
-
-      sleep(0.5) until pool.eop?
 
       download_links
     end
@@ -55,10 +63,10 @@ module PatchFinder
 
       case args[:search_engine]
       when :technet
-        print_status("Searching advisories that include #{args[:keyword]} via Technet")
+        print_verbose("Searching advisories that include #{args[:keyword]} via Technet")
         msb_numbers = technet_search(args[:keyword])
       when :google
-        print_status("Searching advisories that include #{args[:keyword]} via Google")
+        print_verbose("Searching advisories that include #{args[:keyword]} via Google")
         msb_numbers = google_search(args[:keyword], args[:google_api_key], args[:google_search_engine_id])
       end
 
@@ -72,24 +80,24 @@ module PatchFinder
     # @return [Array]
     def collect_links_from_msb(msb, regex = nil)
       unless is_valid_msb?(msb)
-        print_error "Not a valid MSB format: #{msb}"
-        print_error 'Example of a correct one: ms15-100'
+        print_verbose_error "Not a valid MSB format: #{msb}"
+        print_verbose_error 'Example of a correct one: ms15-100'
         return []
       end
 
       res = download_advisory(msb)
 
       if !has_advisory?(res)
-        print_error "The advisory cannot be found for #{msb}"
+        print_verbose_error "The advisory cannot be found for #{msb}"
         return []
       end
 
       links = get_details_aspx(res)
       if links.length == 0
-        print_error "Unable to find download.microsoft.com links for #{msb}."
+        print_verbose_error "Unable to find download.microsoft.com links for #{msb}."
         return []
       else
-        print_status("Found #{links.length} affected products for #{msb}.")
+        print_verbose("Found #{links.length} affected products for #{msb}.")
       end
 
       link_collector = []
@@ -169,7 +177,7 @@ module PatchFinder
           begin
             links << found_link
           rescue ::URI::InvalidURIError
-            print_error "Unable to parse URI: #{found_link}"
+            print_verbose_error "Unable to parse URI: #{found_link}"
           end
         end
       end

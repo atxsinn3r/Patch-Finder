@@ -109,7 +109,7 @@ class PatchFinderBin
   end
 
   def main
-    cli = PatchFinder::MSU.new
+    cli = PatchFinder::MSU.new(verbose: true)
     links = cli.find_msu_download_links(args)
     if args[:destdir]
       print_status("Download links found: #{links.length}")

@@ -5,11 +5,17 @@ module PatchFinder
 
     class PatchFinderException < RuntimeError; end
 
-    # Prints a debug message.
+    attr_accessor :verbose
+
+    # Prints a message if verbose is set
     #
     # @return [void]
-    def print_debug(msg = '')
-      $stderr.puts "[DEBUG] #{msg}"
+    def print_verbose(msg = '')
+      $stderr.puts "[*] #{msg}" if self.verbose
+    end
+
+    def print_verbose_error(msg='')
+      print_error(msge) if self.verbose
     end
 
     # Prints a status message.

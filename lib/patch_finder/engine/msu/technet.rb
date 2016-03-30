@@ -28,7 +28,7 @@ module PatchFinder
         def find_msb_numbers(keyword)
           product_list_matches = get_product_dropdown_list.select { |p| Regexp.new(keyword) === p[:option_text] }
           if product_list_matches.empty?
-            print_status('No match from the product list, attempting a generic search')
+            print_verbose('No match from the product list, attempting a generic search')
             search_by_keyword(keyword)
           else
             product_names = []
@@ -37,7 +37,7 @@ module PatchFinder
               ids << e[:option_value]
               product_names << e[:option_text]
             end
-            print_status("Matches from the product list (#{product_names.length}): #{ product_names * ', ' }")
+            print_verbose("Matches from the product list (#{product_names.length}): #{ product_names * ', ' }")
             search_by_product_ids(ids)
           end
         end
