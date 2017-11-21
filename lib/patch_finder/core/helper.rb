@@ -15,7 +15,7 @@ module PatchFinder
     end
 
     def print_verbose_error(msg='')
-      print_error(msge) if self.verbose
+      print_error(msg) if self.verbose
     end
 
     # Prints a status message.
