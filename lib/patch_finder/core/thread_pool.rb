@@ -5,7 +5,7 @@ module PatchFinder
 
     # Initializes the pool.
     #
-    # @param size [Fixnum] Max number of threads to be running at the same time.
+    # @param size [Integer] Max number of threads to be running at the same time.
     # @return [void]
     def initialize(size)
       @size = size

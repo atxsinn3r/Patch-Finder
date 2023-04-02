@@ -134,16 +134,16 @@ RSpec.describe PatchFinder::Engine::MSU::Google do
   end
 
   describe '#get_total_results' do
-    it 'returns a fixnum' do
+    it 'returns a Integer' do
       total = subject.get_total_results(JSON.parse(json_data.body))
-      expect(total).to be_kind_of(Fixnum)
+      expect(total).to be_kind_of(Integer)
     end
   end
 
   describe '#get_next_index' do
-    it 'returns a fixnum' do
+    it 'returns a Integer' do
       i = subject.get_next_index(JSON.parse(json_data.body))
-      expect(i).to be_kind_of(Fixnum)
+      expect(i).to be_kind_of(Integer)
     end
   end
 end

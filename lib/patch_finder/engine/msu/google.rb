@@ -74,13 +74,13 @@ module PatchFinder
         # Searches the Google API.
         #
         # @param opts [Hash]
-        # @option opts [Fixnum] :starting_index
+        # @option opts [Integer] :starting_index
         # @option opts [String] :keyword
         # @return [Hash] JSON
         def search(opts = {})
           starting_index = opts[:starting_index]
 
-          search_string = URI.escape([
+          search_string = CGI.escape([
             opts[:keyword],
             'intitle:"Microsoft Security Bulletin"',
             '-"Microsoft Security Bulletin Summary"'
@@ -122,7 +122,7 @@ module PatchFinder
         # Returns totalResults
         #
         # @param j [Hash] JSON response.
-        # @return [Fixnum]
+        # @return [Integer]
         def get_total_results(j)
           j['queries']['request'].first['totalResults'].to_i
         end
@@ -130,7 +130,7 @@ module PatchFinder
         # Returns startIndex
         #
         # @param j [Hash] JSON response.
-        # @return [Fixnum]
+        # @return [Integer]
         def get_next_index(j)
           j['queries']['nextPage'] ? j['queries']['nextPage'].first['startIndex'] : 0
         end
