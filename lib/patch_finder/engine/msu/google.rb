@@ -80,7 +80,7 @@ module PatchFinder
         def search(opts = {})
           starting_index = opts[:starting_index]
 
-          search_string = URI.escape([
+          search_string = CGI.escape([
             opts[:keyword],
             'intitle:"Microsoft Security Bulletin"',
             '-"Microsoft Security Bulletin Summary"'
